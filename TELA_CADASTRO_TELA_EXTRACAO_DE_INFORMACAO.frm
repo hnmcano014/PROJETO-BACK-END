@@ -18,7 +18,7 @@ Begin VB.Form TELA_CADASTRO_TELA_EXTRACAO_DE_INFORMACAO
       Width           =   2775
    End
    Begin VB.CommandButton TELA_CADASTRO_BOTAOEXCEL 
-      Caption         =   "Extrair relatório para um excel"
+      Caption         =   "Extrair relatÃ³rio para um excel"
       Height          =   615
       Left            =   2040
       TabIndex        =   1
@@ -26,7 +26,7 @@ Begin VB.Form TELA_CADASTRO_TELA_EXTRACAO_DE_INFORMACAO
       Width           =   2415
    End
    Begin VB.Frame Frame1 
-      Caption         =   "Filtro Situação do cliente"
+      Caption         =   "Filtro SituaÃ§Ã£o do cliente"
       Height          =   3255
       Left            =   120
       TabIndex        =   0
@@ -45,7 +45,7 @@ Dim conexaoBD As Object
 Dim SITUACAOCLIENTE_FILTRO As String
 
 Private Sub Form_Load()
-    ' ########## INICIANDO CONEXAO COM O BANCO DE DADOS --//
+
     Set conexaoBD = CreateObject("ADODB.Connection")
     conexaoBD.ConnectionString = "Driver={PostgreSQL ODBC Driver(UNICODE)};Server=localhost;Port=5433;Database=postgres;UID=postgres;PWD=hnmcano;"
     conexaoBD.Open
@@ -56,12 +56,11 @@ Private Sub Form_Load()
         Unload Me
     End If
 
-    ' ########## CARREGANDO FUNCAO DE LISTA DE FILTRO --//
     LISTA_FILTRO_SITUACAOCLIENTE
 End Sub
 
 Private Sub LISTA_FILTRO_SITUACAOCLIENTE()
-    ' ########## CONTRUINDO A LISTA DE SITUACAO_CLIENTE --//
+
     TELA_CADASTRO_FILTROSITUACAOCLIENTE.Clear
     Dim strSQL As String
     strSQL = "SELECT DISTINCT SITUACAO_CLIENTE FROM bdados_processo;"
@@ -70,7 +69,6 @@ Private Sub LISTA_FILTRO_SITUACAOCLIENTE()
     Set rs = CreateObject("ADODB.Recordset")
     rs.Open strSQL, conexaoBD
 
-    ' ########## PREENCHENDO O FILTRO DE LISTA --//
     Do While Not rs.EOF
         TELA_CADASTRO_FILTROSITUACAOCLIENTE.AddItem rs("SITUACAO_CLIENTE").Value
         rs.MoveNext
@@ -80,16 +78,13 @@ Private Sub LISTA_FILTRO_SITUACAOCLIENTE()
 End Sub
 
 Private Sub TELA_CADASTRO_BOTAOEXCEL_Click()
-    ' ########## CONSULTA COM OS ITENS SELECIONADOS --//
     Dim strSQL As String
     strSQL = "SELECT * FROM bdados_processo"
 
-    ' ########## CONSULTA COM ITENS SELECIONADOS --//
     If TELA_CADASTRO_FILTROSITUACAOCLIENTE.ListCount > 0 Then
         Dim i As Integer
         Dim selectedItems As String
 
-        ' ########## VALIDACAO COM ITENS DO FILTROS --//
         For i = 0 To TELA_CADASTRO_FILTROSITUACAOCLIENTE.ListCount - 1
             If TELA_CADASTRO_FILTROSITUACAOCLIENTE.Selected(i) Then
                 If Len(selectedItems) > 0 Then
@@ -99,13 +94,11 @@ Private Sub TELA_CADASTRO_BOTAOEXCEL_Click()
             End If
         Next i
 
-        ' ########## CONSULTA COM FILTRO --//
         If Len(selectedItems) > 0 Then
             strSQL = strSQL & " AND SITUACAO_CLIENTE IN (" & selectedItems & ")"
         End If
     End If
 
-    ' ########## ARMAZENANDO RESULTADO
     Dim rs As Object
     Set rs = CreateObject("ADODB.Recordset")
     rs.Open strSQL, conexaoBD
@@ -126,7 +119,6 @@ Private Sub TELA_CADASTRO_BOTAOEXCEL_Click()
 
         xlWorksheet.Range("A2").CopyFromRecordset rs
 
-        ' ########## SALVANDO RELATÓRIO --//
         Dim fileName As String
         fileName = Environ("USERPROFILE") & "\Downloads\Consulta_Resultado.xlsx"
         xlWorkbook.SaveAs fileName
@@ -137,7 +129,6 @@ Private Sub TELA_CADASTRO_BOTAOEXCEL_Click()
         Set xlWorkbook = Nothing
         Set xlApp = Nothing
 
-        ' ########## ARQUIVO SALVO --//
         MsgBox "Consulta salva em: " & fileName, vbInformation
     Else
         MsgBox "Nenhum resultado encontrado.", vbInformation
