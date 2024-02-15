@@ -96,7 +96,7 @@ Begin VB.Form TELA_CADASTRO
       Width           =   2655
    End
    Begin VB.CommandButton TELA_CADASTRO_BOTAOEXTRAIR 
-      Caption         =   "Extrair informaÁ„o de cadastro"
+      Caption         =   "Extrair informa√ß√£o de cadastro"
       Height          =   855
       Left            =   10320
       TabIndex        =   5
@@ -112,7 +112,7 @@ Begin VB.Form TELA_CADASTRO
       Width           =   11295
    End
    Begin VB.Frame Frame3 
-      Caption         =   "InformaÁıes Adicionais"
+      Caption         =   "Informa√ß√µes Adicionais"
       Height          =   4455
       Left            =   120
       TabIndex        =   2
@@ -135,7 +135,7 @@ Begin VB.Form TELA_CADASTRO
          Width           =   4575
       End
       Begin VB.Label Label9 
-         Caption         =   "SituaÁ„o cliente"
+         Caption         =   "Situa√ß√£o cliente"
          Height          =   255
          Left            =   5040
          TabIndex        =   26
@@ -151,7 +151,7 @@ Begin VB.Form TELA_CADASTRO
          Width           =   4695
       End
       Begin VB.Label Label7 
-         Caption         =   "EndereÁo"
+         Caption         =   "Endere√ßo"
          Height          =   255
          Left            =   120
          TabIndex        =   24
@@ -168,7 +168,7 @@ Begin VB.Form TELA_CADASTRO
       End
    End
    Begin VB.Frame Frame2 
-      Caption         =   "Menu de opÁıes"
+      Caption         =   "Menu de op√ß√µes"
       Height          =   4455
       Left            =   10200
       TabIndex        =   1
@@ -195,7 +195,7 @@ Begin VB.Form TELA_CADASTRO
    End
    Begin VB.Frame Frame1 
       BackColor       =   &H80000004&
-      Caption         =   "InformaÁıes do Cliente"
+      Caption         =   "Informa√ß√µes do Cliente"
       Height          =   2295
       Left            =   120
       TabIndex        =   0
@@ -288,7 +288,7 @@ Private Sub TELA_CADASTRO_BOTAOBUSCAR_Click()
     If Len(NOME_FILTRO) > 0 And RG_FILTRO > 0 Then
         PreencherTextBoxes
     Else
-        MsgBox "Por favor, selecione um item no filtro antes de atualizar as informaÁıes."
+        MsgBox "Por favor, selecione um item no filtro antes de atualizar as informa√ß√µes."
     End If
 End Sub
 
@@ -333,7 +333,7 @@ Private Sub PreencherTextBoxes()
         ID = rs("ID").Value
     ' ### VALIDANDO O PREENCHIMENTO -->>
     Else
-        MsgBox "N„o h· registros correspondentes aos filtros."
+        MsgBox "N√£o h√° registros correspondentes aos filtros."
     End If
     
     rs.Close
@@ -366,7 +366,7 @@ Private Sub TELA_CADASTRO_BOTAONOVO_Click()
        TELA_CADASTRO_TXTTIPOCLIENTE.Text = "" Or _
        TELA_CADASTRO_TXTID.Text = "" Then
        
-        MsgBox "Por favor, preencha todas as informaÁıes corretamente antes de continuar."
+        MsgBox "Por favor, preencha todas as informa√ß√µes corretamente antes de continuar."
         Exit Sub
     End If
     
@@ -374,7 +374,7 @@ Private Sub TELA_CADASTRO_BOTAONOVO_Click()
     
     ' ### VALIDACAO DO CLIENTE -->>
     If Not IsNumeric(TELA_CADASTRO_TXTRG.Text) Then
-        MsgBox "O campo RG deve ser um valor numÈrico."
+        MsgBox "O campo RG deve ser um valor num√©rico."
         Exit Sub
     End If
     RG = CDbl(TELA_CADASTRO_TXTRG.Text)
@@ -383,7 +383,7 @@ Private Sub TELA_CADASTRO_BOTAONOVO_Click()
     
     ' ### VALIDACAO DO TELEFONE CLIENTE -->>
     If Not IsNumeric(TELA_CADASTRO_TXTTELEFONE.Text) Then
-        MsgBox "O campo TELEFONE deve ser um valor numÈrico."
+        MsgBox "O campo TELEFONE deve ser um valor num√©rico."
         Exit Sub
     End If
     TELEFONE = CDbl(TELA_CADASTRO_TXTTELEFONE.Text)
@@ -396,7 +396,7 @@ Private Sub TELA_CADASTRO_BOTAONOVO_Click()
     
     ' ### VALIDACAO DO ID CLIENTE -->>
     If Not IsNumeric(TELA_CADASTRO_TXTID.Text) Then
-        MsgBox "O campo ID_CLIENTE deve ser um valor numÈrico."
+        MsgBox "O campo ID_CLIENTE deve ser um valor num√©rico."
         Exit Sub
     End If
     ID_CLIENTE = CDbl(TELA_CADASTRO_TXTID.Text)
@@ -422,19 +422,19 @@ Private Sub AtualizarCadastro()
     
     ' ### VALIDACAO DO RG -->>
     If Not IsNumeric(TELA_CADASTRO_TXTRG.Text) Then
-        MsgBox "O campo RG deve ser um valor numÈrico."
+        MsgBox "O campo RG deve ser um valor num√©rico."
         Exit Sub
     End If
     
     ' ### VALIDACAO DO TELEFONE -->>
     If Not IsNumeric(TELA_CADASTRO_TXTTELEFONE.Text) Then
-        MsgBox "O campo TELEFONE deve ser um valor numÈrico."
+        MsgBox "O campo TELEFONE deve ser um valor num√©rico."
         Exit Sub
     End If
     
     ' ### VALIDACAO DO ID CLIENTE -->>
     If Not IsNumeric(TELA_CADASTRO_TXTID.Text) Then
-        MsgBox "O campo ID_CLIENTE deve ser um valor numÈrico."
+        MsgBox "O campo ID_CLIENTE deve ser um valor num√©rico."
         Exit Sub
     End If
     
@@ -476,7 +476,7 @@ End Sub
 
 Private Sub TELA_CADASTRO_BOTAOEXCLUIR_Click()
     Dim resposta As VbMsgBoxResult
-    resposta = MsgBox("Deseja seguir com a exclus„o?", vbQuestion + vbYesNo, "ConfirmaÁ„o")
+    resposta = MsgBox("Deseja seguir com a exclus√£o?", vbQuestion + vbYesNo, "Confirma√ß√£o")
 
     If resposta = vbYes Then
         ExcluirCadastro
